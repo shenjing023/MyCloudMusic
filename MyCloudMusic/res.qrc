@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>logo.ico</file>
+        <file>style.qss</file>
+        <file>Images/close.png</file>
+        <file>Content/main.qml</file>
+        <file>Images/search.png</file>
+        <file>Font/icomoon.ttf</file>
+        <file>Content/NavigationBar/NavigationBar.qml</file>
+        <file>Content/NavigationBar/NavigationBtn.qml</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,33 @@
+﻿QLineEdit#titleBar_search_lineEdit{
+    border:1px solid rgb(0, 156, 102);
+    border-radius:10px;
+    font-family:"Microsoft Yahei";
+}
+
+QPushButton#titleBar_search_button{
+    border-image:url(:/Images/search);
+    border:none;
+    outline: none;
+}
+
+QLabel#titleBar_title_label{
+    color:green;
+    font-family:"Microsoft Yahei";
+    font-size:16px;
+}
+
+QPushButton#titleBar_maxBtn_button:enabled,QPushButton#titleBar_minBtn_button:enabled,QPushButton#titleBar_closeBtn_button:enabled{
+    /*background: deepskyblue;*/
+    border:none;
+    outline: none;
+}
+
+QPushButton#titleBar_maxBtn_button:enabled:hover,QPushButton#titleBar_minBtn_button:enabled:hover{
+    background: #66CC99;
+    outline: none;
+}
+
+QPushButton#titleBar_closeBtn_button:enabled:hover{
+    background: crimson;
+    outline: none;
+}
