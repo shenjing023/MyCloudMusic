@@ -38,8 +38,8 @@ private:
     QPushButton *m_pMinimizeButton;
     QPushButton *m_pMaximizeButton;
     QPushButton *m_pCloseButton;
-    QLineEdit *m_pSearchLineEdit;   //搜索框
-    QPushButton *m_pSearchButton;
+//    QLineEdit *m_pSearchLineEdit;   //搜索框
+//    QPushButton *m_pSearchButton;
 
 };
 

@@ -1,16 +1,4 @@
-﻿QLineEdit#titleBar_search_lineEdit{
-    border:1px solid rgb(0, 156, 102);
-    border-radius:10px;
-    font-family:"Microsoft Yahei";
-}
-
-QPushButton#titleBar_search_button{
-    border-image:url(:/Images/search);
-    border:none;
-    outline: none;
-}
-
-QLabel#titleBar_title_label{
+﻿QLabel#titleBar_title_label{
     color:green;
     font-family:"Microsoft Yahei";
     font-size:16px;

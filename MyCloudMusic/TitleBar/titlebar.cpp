@@ -27,24 +27,24 @@ TitleBar::TitleBar(QWidget *parent) : QWidget(parent)
     m_pCloseButton = new QPushButton(this);
 
     //搜索框
-    m_pSearchLineEdit=new QLineEdit(this);
-    m_pSearchLineEdit->setObjectName("titleBar_search_lineEdit");
-    m_pSearchLineEdit->setFixedWidth(250);
-    m_pSearchButton = new QPushButton(this);
-    m_pSearchButton->setObjectName("titleBar_search_button");
-    m_pSearchButton->setCursor(Qt::PointingHandCursor);
-    m_pSearchButton->setFixedSize(22, 22);
-    m_pSearchButton->setToolTip(QStringLiteral("搜索"));
-    //防止文本框输入内容位于按钮之下
-    QMargins margins = m_pSearchLineEdit->textMargins();
-    m_pSearchLineEdit->setTextMargins(margins.left()+5, margins.top(), m_pSearchButton->width(), margins.bottom());
-    m_pSearchLineEdit->setPlaceholderText(QStringLiteral("请输入搜索内容"));
-    QHBoxLayout *pSearchLayout = new QHBoxLayout();
-    pSearchLayout->addStretch();
-    pSearchLayout->addWidget(m_pSearchButton);
-    pSearchLayout->setSpacing(0);
-    pSearchLayout->setContentsMargins(0, 0, 0, 0);
-    m_pSearchLineEdit->setLayout(pSearchLayout);
+//    m_pSearchLineEdit=new QLineEdit(this);
+//    m_pSearchLineEdit->setObjectName("titleBar_search_lineEdit");
+//    m_pSearchLineEdit->setFixedWidth(250);
+//    m_pSearchButton = new QPushButton(this);
+//    m_pSearchButton->setObjectName("titleBar_search_button");
+//    m_pSearchButton->setCursor(Qt::PointingHandCursor);
+//    m_pSearchButton->setFixedSize(22, 22);
+//    m_pSearchButton->setToolTip(QStringLiteral("搜索"));
+//    //防止文本框输入内容位于按钮之下
+//    QMargins margins = m_pSearchLineEdit->textMargins();
+//    m_pSearchLineEdit->setTextMargins(margins.left()+5, margins.top(), m_pSearchButton->width(), margins.bottom());
+//    m_pSearchLineEdit->setPlaceholderText(QStringLiteral("请输入搜索内容"));
+//    QHBoxLayout *pSearchLayout = new QHBoxLayout();
+//    pSearchLayout->addStretch();
+//    pSearchLayout->addWidget(m_pSearchButton);
+//    pSearchLayout->setSpacing(0);
+//    pSearchLayout->setContentsMargins(0, 0, 0, 0);
+//    m_pSearchLineEdit->setLayout(pSearchLayout);
 
     //设置按钮样式
     QPixmap pix=style()->standardPixmap(QStyle::SP_TitleBarCloseButton);
@@ -77,7 +77,7 @@ TitleBar::TitleBar(QWidget *parent) : QWidget(parent)
     pLayout->addSpacing(5);
     pLayout->addWidget(m_pTitleLabel);
     pLayout->addSpacing(20);
-    pLayout->addWidget(m_pSearchLineEdit);
+    //pLayout->addWidget(m_pSearchLineEdit);
     pLayout->addStretch(0);
     pLayout->addSpacing(200);
     pLayout->addWidget(m_pMinimizeButton);

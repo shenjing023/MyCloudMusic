@@ -16,7 +16,7 @@ MainWidget::MainWidget(QWidget *parent)
 {
     setWindowFlags(Qt::FramelessWindowHint|windowFlags());
     setAttribute(Qt::WA_TranslucentBackground);
-    resize(900,600);
+    resize(1000,700);
 
     TitleBar *pTitleBar=new TitleBar(this);
     installEventFilter(pTitleBar);
@@ -25,7 +25,7 @@ MainWidget::MainWidget(QWidget *parent)
 
     QDesktopWidget* desktopWidget = QApplication::desktop();
     int curMonitor = desktopWidget->screenNumber(this);    //获取当前显示器编号
-    setMinimumSize(900,600);
+    setMinimumSize(1000,700);
     setMaximumSize(desktopWidget->availableGeometry(curMonitor).width(),desktopWidget->availableGeometry(curMonitor).height());
 
 

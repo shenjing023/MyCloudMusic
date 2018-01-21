@@ -8,5 +8,7 @@
         <file>Font/icomoon.ttf</file>
         <file>Content/NavigationBar/NavigationBar.qml</file>
         <file>Content/NavigationBar/NavigationBtn.qml</file>
+        <file>Content/Playlists/Playlists.qml</file>
+        <file>Content/Playlists/TabBtn.qml</file>
     </qresource>
 </RCC>

@@ -1,6 +1,7 @@
 ﻿import QtQuick 2.9
 import QtQuick.Controls 2.2
 import "NavigationBar"
+import "Playlists"
 
 Rectangle{
     id:root;
@@ -13,13 +14,27 @@ Rectangle{
 
     Rectangle{
         width: parent.width;
-        height: 1;
+        height: 2;
         color: "#99CC00";
     }
 
     NavigationBar{
+        id:navigationBar
         anchors.left: parent.left;
-        width: 150;
-        height: parent.height;
+        anchors.top: parent.top
+        anchors.topMargin: 2
+        width: 200;
+        height: parent.height-2;
+    }
+
+    Playlists{
+        anchors{
+            top: parent.top
+            topMargin: 2
+            left: navigationBar.right
+            leftMargin: 2
+            right: parent.right
+        }
+        height: parent.height-2
     }
 }

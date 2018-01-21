@@ -1,4 +1,8 @@
-﻿import QtQuick 2.9
+﻿/***
+  左侧导航栏
+  */
+
+import QtQuick 2.9
 import QtQuick.Controls 2.2
 
 Rectangle{
@@ -34,12 +38,15 @@ Rectangle{
 
         NavigationBtn{
             iconText: "\uef51";
-            btnText: qsTr("发现音乐");
+            btnText: qsTr("精选歌单");
             width: parent.width;
             height: 30;
             ButtonGroup.group: navigationBtnGroup;
             btnClickedFunc: function(){
                 console.log(btnText);
+            }
+            Component.onCompleted: {
+                checked=true
             }
         }
 
@@ -55,8 +62,8 @@ Rectangle{
         }
 
         NavigationBtn{
-            iconText: "\uf3ac";
-            btnText: qsTr("MV");
+            iconText: "\ufb87";
+            btnText: qsTr("快速搜索");
             width: parent.width;
             height: 30;
             ButtonGroup.group: navigationBtnGroup;

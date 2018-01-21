@@ -18,8 +18,8 @@ Button{
             implicitWidth: 3;
             implicitHeight: parent.height;
             anchors.left: parent.left;
-            color: "#b82525";
-            visible: root.hovered | root.pressed |root.checked? true : false;
+            color: "#99CC00";
+            visible:  root.pressed |root.checked? true : false;
         }
     }
 
@@ -57,7 +57,7 @@ Button{
             font.pixelSize: 12;
             wrapMode: Text.Wrap;
             verticalAlignment:Label.AlignVCenter;
-            color: root.hovered | root.pressed ?"#000000":"#5C5C5C";
+            color: root.hovered | root.checked ?"#000000":"#5C5C5C";
         }
     }
 }
