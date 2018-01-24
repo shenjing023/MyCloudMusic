@@ -3,8 +3,17 @@
   **/
 import QtQuick 2.9
 import QtQuick.Controls 2.2
+import Network 1.0
 
 Item {
+
+    Network{
+        id:network
+        onSign_requestFinished: {
+            console.log("222")
+            console.log(bytes)
+        }
+    }
 
     ButtonGroup {
         id: tabBtnGroup
@@ -62,5 +71,9 @@ Item {
             }
             boundsBehavior: Flickable.StopAtBounds
         }
+    }
+
+    Component.onCompleted: {
+        network.get()
     }
 }

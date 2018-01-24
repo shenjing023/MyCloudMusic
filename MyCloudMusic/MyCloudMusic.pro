@@ -16,6 +16,7 @@ include(./TitleBar/TitleBar.pri)
 include(./SystemTray/SystemTray.pri)
 include(./SingleApplicationHelper/SingleApplicationHelper.pri)
 include(./Content/Content.pri)
+include(./Network/Network.pri)
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked as deprecated (the exact warnings

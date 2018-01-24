@@ -2,6 +2,7 @@
 #include "./FramelessHelper/framelesshelper.h"
 #include "./TitleBar/titlebar.h"
 #include "./SystemTray/systemtray.h"
+#include "./Network/network.h"
 #include <QVBoxLayout>
 #include <QApplication>
 #include <QDesktopWidget>
@@ -10,6 +11,7 @@
 #include <QSettings>
 #include <QCloseEvent>
 #include <QQuickWidget>
+#include <QtQml>
 
 MainWidget::MainWidget(QWidget *parent)
     : QWidget(parent)
@@ -40,6 +42,9 @@ MainWidget::MainWidget(QWidget *parent)
     QQuickWidget *pWidget=new QQuickWidget(this);
     pWidget->resize(this->width(),this->height()-pTitleBar->height());
     pWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
+
+    qmlRegisterType<Network>("Network",1,0,"Network");
+
     pWidget->setSource(QUrl(QStringLiteral("qrc:/Content/main.qml")));
 
     QVBoxLayout *pLayout = new QVBoxLayout();
