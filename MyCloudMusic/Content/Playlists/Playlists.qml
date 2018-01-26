@@ -6,9 +6,11 @@ import QtQuick.Controls 2.2
 import Network 1.0
 
 Item {
+//    width: parent.width
+//    height: parent.height
 
-    Network{
-        id:network
+    Network {
+        id: network
         onSign_requestFinished: {
             console.log("222")
             console.log(bytes)
@@ -33,7 +35,7 @@ Item {
             ButtonGroup.group: tabBtnGroup
             btnClickedFunc: function () {}
             Component.onCompleted: {
-                checked=true
+                checked = true
             }
         }
 
@@ -58,22 +60,44 @@ Item {
     }
 
     ScrollView {
+        id:scrollView
         anchors.top: tabBar.bottom
         anchors.topMargin: 5
         width: parent.width
         height: parent.height - tabBar.height
         clip: true
 
-        ListView {
-            model: 20
-            delegate: ItemDelegate {
-                text: "Item " + index
+        Grid {
+            id: playlists
+            anchors.left: parent.left
+            //设置居中不管用，不知原因,另外下列的scrollView不能改成parent，不知原因
+//anchors.horizontalCenter: scrollView.horizontalCenter
+            anchors.leftMargin: (scrollView.width-width)/2
+            columns: 4
+            rows: 10
+            spacing: 15
+            horizontalItemAlignment: Grid.AlignHCenter
+            verticalItemAlignment: Grid.AlignVCenter
+
+
+
+            Repeater{
+                model: 40
+                delegate: PlaylistItem{
+                    _imageSource: "http://p1.music.126.net/sRtc-rijlUxW9XpKmkSx4g==/109951163117146235.jpg"
+                    _title: "我在零下的阳光里等一场雪"
+                }
             }
-            boundsBehavior: Flickable.StopAtBounds
+
+            Component.onCompleted: {
+                console.log(scrollView.width-width)
         }
+    }
     }
 
     Component.onCompleted: {
-        network.get()
+
+        //network.get()
+        console.log(scrollView.width)
     }
 }

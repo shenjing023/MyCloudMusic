@@ -10,5 +10,6 @@
         <file>Content/NavigationBar/NavigationBtn.qml</file>
         <file>Content/Playlists/Playlists.qml</file>
         <file>Content/Playlists/TabBtn.qml</file>
+        <file>Content/Playlists/PlaylistItem.qml</file>
     </qresource>
 </RCC>

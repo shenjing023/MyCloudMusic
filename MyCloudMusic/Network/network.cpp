@@ -18,8 +18,6 @@ void Network::get()
     QNetworkRequest request;
     request.setUrl(QUrl("http://192.168.217.147:5000/music/url?source=xiami&id=1795925587"));
     m_pManager->get(request);
-//    connect(reply, static_cast<void(QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error),
-//          [=](QNetworkReply::NetworkError code){ qDebug()<<"code:"<<code; });
 }
 
 void Network::slot_requestFinished(QNetworkReply *reply)
