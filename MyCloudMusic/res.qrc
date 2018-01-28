@@ -11,5 +11,8 @@
         <file>Content/Playlists/Playlists.qml</file>
         <file>Content/Playlists/TabBtn.qml</file>
         <file>Content/Playlists/PlaylistItem.qml</file>
+        <file>Content/NetworkError.qml</file>
+        <file>Content/Loading.qml</file>
+        <file>Content/Playlists/Playlist.qml</file>
     </qresource>
 </RCC>

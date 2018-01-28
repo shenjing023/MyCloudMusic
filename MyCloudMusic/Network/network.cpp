@@ -13,18 +13,18 @@ Network::Network(QObject *parent) : QObject(parent)
     connect(m_pManager,SIGNAL(finished(QNetworkReply*)),this,SLOT(slot_requestFinished(QNetworkReply*)));
 }
 
-void Network::get()
+void Network::get(const QString &url)
 {
     QNetworkRequest request;
-    request.setUrl(QUrl("http://192.168.217.147:5000/music/url?source=xiami&id=1795925587"));
+    request.setUrl(QUrl("http://192.168.217.147:5000"+url));
     m_pManager->get(request);
 }
 
 void Network::slot_requestFinished(QNetworkReply *reply)
 {
     //获取响应的信息，状态码
-    QVariant code=reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
-    qDebug()<<code;
+//    QVariant code=reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+//    qDebug()<<code;
 
     //无错误
     if(reply->error()==QNetworkReply::NoError)
@@ -34,7 +34,7 @@ void Network::slot_requestFinished(QNetworkReply *reply)
     }
     else
     {
-        qDebug()<<reply->errorString();
+        Q_EMIT sign_requestError();
     }
     reply->deleteLater();
 }

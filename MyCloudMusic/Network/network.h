@@ -14,17 +14,16 @@ class Network : public QObject
 public:
     explicit Network(QObject *parent = nullptr);
 
-    Q_INVOKABLE void get();
+    Q_INVOKABLE void get(const QString &url);
 
 signals:
     void sign_requestFinished(QVariant bytes);
-    //void sign_requestError();
+    void sign_requestError();
 
 public slots:
     void slot_requestFinished(QNetworkReply*);
 
 private:
-    //static QSharedPointer<QNetworkAccessManager> m_pManager;
     QNetworkAccessManager *m_pManager;
 };
 

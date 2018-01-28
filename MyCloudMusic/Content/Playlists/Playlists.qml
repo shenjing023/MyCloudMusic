@@ -3,17 +3,32 @@
   **/
 import QtQuick 2.9
 import QtQuick.Controls 2.2
+import QtQuick.Controls 1.4 as Controls_1_4
+import QtQuick.Controls.Styles 1.4
 import Network 1.0
 
 Item {
-//    width: parent.width
-//    height: parent.height
+    property int currentPage: 0 //当前是第几页
+    signal requestFinished(string result)
+
+    Connections{
+        target: loader.item
+        onPlaylistRequest:{
+            loader.setSource("qrc:/Content/Loading.qml")
+            currentPage=page
+            var offset = page * 60
+            network.get("/playlists?source=netease&limit=60&offset=" + offset)
+        }
+    }
 
     Network {
         id: network
         onSign_requestFinished: {
-            console.log("222")
-            console.log(bytes)
+            loader.setSource("qrc:/Content/Playlists/Playlist.qml",{"page":currentPage})
+            loader.requestFinished(bytes)
+        }
+        onSign_requestError: {
+            loader.source="qrc:/Content/NetworkError.qml"
         }
     }
 
@@ -31,18 +46,23 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
 
         TabBtn {
+            id: neteaseBtn
             btnText: qsTr("网易云音乐")
             ButtonGroup.group: tabBtnGroup
-            btnClickedFunc: function () {}
-            Component.onCompleted: {
-                checked = true
+            btnClickedFunc: function () {
+                network.get("/playlists?source=netease&limit=60")
+                //scrollView.flickableItem.contentY = 0
             }
         }
 
         TabBtn {
+            id: xiamiBtn
             btnText: qsTr("虾米音乐")
             ButtonGroup.group: tabBtnGroup
-            btnClickedFunc: function () {}
+            btnClickedFunc: function () {
+                network.get("/playlists?source=xiami&limit=60")
+                //scrollView.flickableItem.contentY = 0
+            }
         }
     }
 
@@ -59,45 +79,19 @@ Item {
         color: "#202226"
     }
 
-    ScrollView {
-        id:scrollView
+    Loader{
+        id:loader
         anchors.top: tabBar.bottom
         anchors.topMargin: 5
         width: parent.width
         height: parent.height - tabBar.height
-        clip: true
+        source: "qrc:/Content/Loading.qml"
 
-        Grid {
-            id: playlists
-            anchors.left: parent.left
-            //设置居中不管用，不知原因,另外下列的scrollView不能改成parent，不知原因
-//anchors.horizontalCenter: scrollView.horizontalCenter
-            anchors.leftMargin: (scrollView.width-width)/2
-            columns: 4
-            rows: 10
-            spacing: 15
-            horizontalItemAlignment: Grid.AlignHCenter
-            verticalItemAlignment: Grid.AlignVCenter
-
-
-
-            Repeater{
-                model: 40
-                delegate: PlaylistItem{
-                    _imageSource: "http://p1.music.126.net/sRtc-rijlUxW9XpKmkSx4g==/109951163117146235.jpg"
-                    _title: "我在零下的阳光里等一场雪"
-                }
-            }
-
-            Component.onCompleted: {
-                console.log(scrollView.width-width)
-        }
-    }
+        signal requestFinished(string result)
     }
 
     Component.onCompleted: {
-
-        //network.get()
-        console.log(scrollView.width)
+        neteaseBtn.checked = true
+        neteaseBtn.clicked()
     }
 }
