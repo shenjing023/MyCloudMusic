@@ -1,5 +1,8 @@
 import QtQuick 2.9
-import QtQuick.Controls 2.2
+import QtQuick.Controls 1.4
+/*
+  在qt5.9.3版本中，controls2.2的BusyIndicator在此处不会动，只有在刷新界面的时候动，而1.4版本就没事
+  */
 
 Item {
     anchors.fill: parent
