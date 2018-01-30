@@ -11,24 +11,30 @@ Item {
     property int currentPage: 0 //当前是第几页
     signal requestFinished(string result)
 
-    Connections{
+    Connections {
         target: loader.item
-        onPlaylistRequest:{
+        onPlaylistRequest: {
             loader.setSource("qrc:/Content/Loading.qml")
-            currentPage=page
+            currentPage = page
             var offset = page * 60
-            network.get("/playlists?source=netease&limit=60&offset=" + offset)
+            if (neteaseBtn.checked) {
+                network.get("/playlists?source=netease&limit=60&offset=" + offset)
+            } else {
+                network.get("/playlists?source=xiami&limit=60&page=" + (page + 1))
+            }
         }
     }
 
     Network {
         id: network
         onSign_requestFinished: {
-            loader.setSource("qrc:/Content/Playlists/Playlist.qml",{"page":currentPage})
+            loader.setSource("qrc:/Content/Playlists/Playlist.qml", {
+                                 page: currentPage
+                             })
             loader.requestFinished(bytes)
         }
         onSign_requestError: {
-            loader.source="qrc:/Content/NetworkError.qml"
+            loader.source = "qrc:/Content/NetworkError.qml"
         }
     }
 
@@ -50,8 +56,9 @@ Item {
             btnText: qsTr("网易云音乐")
             ButtonGroup.group: tabBtnGroup
             btnClickedFunc: function () {
+                loader.setSource("qrc:/Content/Loading.qml")
+                currentPage = 0
                 network.get("/playlists?source=netease&limit=60")
-                //scrollView.flickableItem.contentY = 0
             }
         }
 
@@ -60,6 +67,8 @@ Item {
             btnText: qsTr("虾米音乐")
             ButtonGroup.group: tabBtnGroup
             btnClickedFunc: function () {
+                loader.setSource("qrc:/Content/Loading.qml")
+                currentPage = 0
                 network.get("/playlists?source=xiami&limit=60")
                 //scrollView.flickableItem.contentY = 0
             }
@@ -79,8 +88,8 @@ Item {
         color: "#202226"
     }
 
-    Loader{
-        id:loader
+    Loader {
+        id: loader
         anchors.top: tabBar.bottom
         anchors.topMargin: 5
         width: parent.width
