@@ -10,12 +10,30 @@ Rectangle {
     height: 215
     color: "transparent"
 
+    signal itemClicked(string list_id)
+
     Image {
         id: image
         source: imageSource
         width: parent.width
         height: parent.height - 40
+        MouseArea {
+            anchors.fill: parent
+            hoverEnabled: true
+            cursorShape: Qt.PointingHandCursor
 
+            onEntered: {
+                playBtn.visible = true
+            }
+
+            onExited: {
+                playBtn.visible = false
+            }
+
+            onClicked: {
+                itemClicked(list_id)
+            }
+        }
         //图像底部play按钮
         Label {
             id: playBtn
@@ -35,28 +53,14 @@ Rectangle {
                 anchors.fill: parent
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
+                propagateComposedEvents: true
 
-                onClicked: {
-
+                onEntered: {
+                    playBtn.visible = true
                 }
-            }
-        }
-
-        MouseArea {
-            anchors.fill: parent
-            hoverEnabled: true
-            cursorShape: Qt.PointingHandCursor
-
-            onEntered: {
-                playBtn.visible = true
-            }
-
-            onExited: {
-                playBtn.visible = false
-            }
-
-            onClicked: {
-
+                onClicked: {
+                    mouse.accepted = false
+                }
             }
         }
     }

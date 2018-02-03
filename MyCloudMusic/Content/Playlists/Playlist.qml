@@ -8,7 +8,8 @@ Item {
     id:root
     anchors.fill: parent
 
-    signal playlistRequest(int page)
+    signal playlistRequest(int page)    //请求第几页数据
+    signal playlistDetail(string list_id)    //请求歌单详情
 
     Connections{
         target: root.parent
@@ -30,8 +31,6 @@ Item {
     ButtonGroup{
         id:pageBtnGroup
         onClicked: {
-//            pageIndex=parseInt(button.text) - 1
-//            var offset = pageIndex * 60
             playlistRequest(parseInt(button.text) - 1)
         }
     }
@@ -46,10 +45,6 @@ Item {
 
     Controls_1_4.ScrollView {
         id: scrollView
-//        anchors.top: tabBar.bottom
-//        anchors.topMargin: 5
-//        width: parent.width
-//        height: parent.height - tabBar.height
         anchors.fill: parent
         clip: true
         verticalScrollBarPolicy: Qt.ScrollBarAsNeeded
@@ -77,6 +72,10 @@ Item {
                         imageSource: _imageSource
                         title: _title
                         list_id: _list_id
+
+                        onItemClicked: {
+                            playlistDetail(list_id)
+                        }
                     }
                 }
             }

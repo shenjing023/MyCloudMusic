@@ -12,7 +12,7 @@ Item {
     signal requestFinished(string result)
 
     Connections {
-        target: loader.item
+        target: loader.source=="qrc:/Content/Playlists/Playlist.qml"?loader.item : null
         onPlaylistRequest: {
             loader.setSource("qrc:/Content/Loading.qml")
             currentPage = page
@@ -22,6 +22,16 @@ Item {
             } else {
                 network.get("/playlists?source=xiami&limit=60&page=" + (page + 1))
             }
+        }
+
+        onPlaylistDetail:{
+            if(neteaseBtn.checked){
+                listDetail.list_url="/playlist/detail?source=netease&id="+list_id
+            }
+            else{
+                listDetail.list_url="/playlist/detail?source=xiami&id="+list_id
+            }
+            listDetail.open()
         }
     }
 
@@ -36,6 +46,14 @@ Item {
         onSign_requestError: {
             loader.source = "qrc:/Content/NetworkError.qml"
         }
+    }
+
+    Details{
+        id:listDetail
+        x:parent.x
+        y:parent.y
+        width: parent.width
+        height: parent.height
     }
 
     ButtonGroup {
@@ -89,6 +107,7 @@ Item {
     }
 
     Loader {
+        //这里还可以再封装一下
         id: loader
         anchors.top: tabBar.bottom
         anchors.topMargin: 5

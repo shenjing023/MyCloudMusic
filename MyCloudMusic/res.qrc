@@ -14,5 +14,8 @@
         <file>Content/NetworkError.qml</file>
         <file>Content/Loading.qml</file>
         <file>Content/Playlists/Playlist.qml</file>
+        <file>Content/Playlists/Details.qml</file>
+        <file>Content/Playlists/PlaylistDetails.qml</file>
+        <file>Content/Playlists/SongListItem.qml</file>
     </qresource>
 </RCC>

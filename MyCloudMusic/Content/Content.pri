@@ -7,4 +7,8 @@ DISTFILES += \
     $$PWD/Playlists/PlaylistItem.qml \
     $$PWD/NetworkError.qml \
     $$PWD/Loading.qml \
-    $$PWD/Playlists/Playlist.qml
+    $$PWD/Playlists/Playlist.qml \
+    $$PWD/Playlists/Details.qml \
+    $$PWD/Playlists/PlaylistDetails.qml \
+    $$PWD/Playlists/SongListItem.qml \
+    $$PWD/PlayController/PlayController.qml
