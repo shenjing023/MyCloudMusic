@@ -6,7 +6,7 @@ import QtQuick.Controls.Styles 1.4
 Item {
     property int page: 0   //当前是第几页
     id:root
-    anchors.fill: parent
+    //anchors.fill: parent
 
     signal playlistRequest(int page)    //请求第几页数据
     signal playlistDetail(string list_id)    //请求歌单详情

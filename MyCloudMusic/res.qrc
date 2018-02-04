@@ -17,5 +17,7 @@
         <file>Content/Playlists/Details.qml</file>
         <file>Content/Playlists/PlaylistDetails.qml</file>
         <file>Content/Playlists/SongListItem.qml</file>
+        <file>Content/PlayController/PlayController.qml</file>
+        <file>Content/PlayController/PlaySlider.qml</file>
     </qresource>
 </RCC>

@@ -242,7 +242,7 @@ Item {
             ButtonGroup.group: songsBtnGroup
 
             onDoubleClicked: {
-                console.log(root.type+song_id)
+
             }
         }
 

@@ -65,15 +65,4 @@ Popup {
             }
         }
     }
-
-//    Component.onCompleted: {
-//        detailLoader.setSource("qrc:/Content/Playlists/PlaylistDetails.qml", {
-//                                   name: "歌单名称",
-//                                   user: "歌单作者",
-//                                   songs_count: 11,
-//                                   play_count: 123,
-//                                   recommends_count: 1223,
-//                                   favorites_count: 231
-//                               })
-//    }
 }

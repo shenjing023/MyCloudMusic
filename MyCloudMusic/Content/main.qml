@@ -2,6 +2,7 @@
 import QtQuick.Controls 2.2
 import "NavigationBar"
 import "Playlists"
+import "PlayController"
 
 Rectangle {
     id: root
@@ -36,8 +37,21 @@ Rectangle {
             leftMargin: 2
             right: parent.right
         }
-        height: parent.height - 2
+        height: parent.height - 2-playController.height
 
         source: "qrc:/Content/Playlists/Playlists.qml"
+    }
+
+    PlayController {
+        id: playController
+        anchors {
+            bottom: parent.bottom
+            bottomMargin: 1
+            left: parent.left
+            leftMargin: 1
+            right: parent.right
+            rightMargin: 1
+        }
+        height: 45
     }
 }
