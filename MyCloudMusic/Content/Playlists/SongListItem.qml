@@ -1,4 +1,4 @@
-import QtQuick 2.9
+﻿import QtQuick 2.9
 import QtQuick.Controls 2.2
 
 Button {
@@ -7,6 +7,8 @@ Button {
     property string singers: "" //歌手
     property string album_name: "" //专辑名
     property string song_id: "" //歌曲id
+    property int song_length: 0 //歌曲长度
+    property string pic_url: "" //歌曲图片
     property color backgroundColor: {
         if (song_index % 2 === 0)
             return "#1a1c20"

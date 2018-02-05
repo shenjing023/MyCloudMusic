@@ -54,4 +54,15 @@ Rectangle {
         }
         height: 45
     }
+
+    /*
+      url  获取歌曲的链接url
+      pic_url  歌曲专辑图片
+      song_length 歌曲的长度
+      */
+    function playMusic(url,pic_url,song_length){
+        playController.song_url=url
+        playController.pic_url=pic_url
+        playController.song_length=song_length
+    }
 }

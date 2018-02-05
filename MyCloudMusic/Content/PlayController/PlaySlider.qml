@@ -1,4 +1,4 @@
-/*
+﻿/*
   歌曲播放进度条和音量调节器滑块
   */
 import QtQuick 2.9
@@ -8,6 +8,8 @@ Slider {
     property real minValue: 0.0
     property real maxValue: 0.0
     property bool isVisible: true //滑块handle是否显示，在音量调节器时需要隐藏
+    property bool isPressed: false
+    property var releasedFunc: function(){}
     id: sliderControl
     from: minValue
     to: maxValue
@@ -61,10 +63,29 @@ Slider {
             font.pixelSize: 20
         }
 
-//        MouseArea {
-//            anchors.fill: parent
-//            cursorShape: Qt.PointingHandCursor
-//            acceptedButtons: Qt.LeftButton
-//        }
+        MouseArea {
+            property real xmouse;
+                        anchors.fill: parent;
+                        hoverEnabled: true;
+
+                        cursorShape: Qt.PointingHandCursor;
+                        acceptedButtons: Qt.LeftButton;
+                        onPressed: {
+                            xmouse=mouseX;
+                            sliderControl.isPressed=true;
+                        }
+
+                        onReleased: {
+                            sliderControl.isPressed=false;
+                            sliderControl.releasedFunc();
+                        }
+
+                        onPositionChanged: {
+                            if(pressed)
+                            {
+                                sliderControl.value=sliderControl.value+(mouseX-xmouse)/(sliderControl.width)*(maxValue-minValue);
+                            }
+                        }
+        }
     }
 }

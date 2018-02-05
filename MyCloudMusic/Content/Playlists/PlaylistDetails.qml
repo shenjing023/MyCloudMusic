@@ -1,4 +1,4 @@
-/*
+﻿/*
   歌单详情具体页面
   */
 import QtQuick 2.9
@@ -36,7 +36,9 @@ Item {
                                       _album_name: songs[i].album_name,
                                       _singers: songs[i].singers,
                                       _song_id: songs[i].song_id,
-                                      _song_name: songs[i].song_name
+                                      _song_name: songs[i].song_name,
+                                      _pic_url:songs[i].pic_url,
+                                      _song_length:songs[i].song_length
                                   })
             }
         }
@@ -234,15 +236,18 @@ Item {
         width: parent.width
         model: songsModel
         delegate: SongListItem {
+            id:songlistItem
             song_index: index + 1
             song_name: _song_name
             singers: _singers
             album_name: _album_name
             song_id: _song_id
+            pic_url: _pic_url
+            song_length: _song_length
             ButtonGroup.group: songsBtnGroup
 
             onDoubleClicked: {
-
+                playMusic("source="+root.type+"&id="+song_id,songlistItem.pic_url,songlistItem.song_length)
             }
         }
 

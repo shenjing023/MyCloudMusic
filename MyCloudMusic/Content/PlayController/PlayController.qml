@@ -1,13 +1,65 @@
-/*
+﻿/*
   窗口底部的播放控制器
   */
 import QtQuick 2.9
 import QtQuick.Controls 2.2
+import QtMultimedia 5.9
+import Network 1.0
 
 Rectangle {
+    property string song_url: "" //歌曲的url
+    property string pic_url: "" //歌曲专辑图片
+    property int song_length: 0 //歌曲的长度
     id: root
-    //anchors.fill: parent
     color: "#222225"
+
+    //格式化歌曲长度
+    function durationFormat(length) {
+        var m = parseInt(length / 60) >= 10 ? parseInt(
+                                                  length / 60) : "0" + parseInt(
+                                                  length / 60)
+        var s = parseInt(length % 60) >= 10 ? parseInt(
+                                                  length % 60) : "0" + parseInt(
+                                                  length % 60)
+        return m + ":" + s
+    }
+
+    Network {
+        id: network
+        onSign_requestFinished: {
+            var data = JSON.parse(bytes)
+            var url = data['song_url']
+            mediaplayer.source = url
+            mediaplayer.play()
+        }
+    }
+
+    MediaPlayer {
+        id: mediaplayer
+
+        onError: {
+
+        }
+        onPlaying: {
+
+        }
+        onStopped: {
+
+        }
+        onSourceChanged: {
+
+        }
+        onPositionChanged: {
+            if (!playSlider.isPressed)
+                playSlider.value = position / 1000
+            console.log(position / 1000)
+        }
+    }
+
+    onSong_urlChanged: {
+        network.get("/music/url?" + song_url)
+        //playSlider.maxValue = song_length
+    }
 
     Row {
         id: playBtnRow
@@ -25,7 +77,7 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
             text: "\ued06"
 
-            background: Rectangle{
+            background: Rectangle {
                 anchors.fill: parent
                 color: root.color
             }
@@ -58,15 +110,15 @@ Rectangle {
             text: "\ued03"
             state: "pause"
 
-            background: Rectangle{
+            background: Rectangle {
                 anchors.fill: parent
                 color: root.color
             }
 
             contentItem: Label {
                 anchors.fill: parent
-                //anchors.verticalCenter: parent.verticalCenter
 
+                //anchors.verticalCenter: parent.verticalCenter
                 text: playBtn.text
                 color: playBtn.hovered ? "white" : "#5a5a5c"
                 font.pixelSize: 35
@@ -115,7 +167,7 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
             text: "\ued07"
 
-            background: Rectangle{
+            background: Rectangle {
                 anchors.fill: parent
                 color: root.color
             }
@@ -169,10 +221,13 @@ Rectangle {
         //width: 400
         height: 15
         minValue: 0.0
-        maxValue: 10.0
+        maxValue: root.song_length
+        releasedFunc: function () {
+            mediaplayer.seek(playSlider.value * 1000)
+        }
 
         onValueChanged: {
-
+            playedTime.text = durationFormat(playSlider.value)
         }
     }
 
@@ -183,7 +238,8 @@ Rectangle {
         anchors.rightMargin: 15
         width: 50
         height: parent.height
-        text: "00:00"
+        text: durationFormat(root.song_length)
+
         color: "#d2d3da"
         font.pixelSize: 14
         font.family: "Microsoft YaHei"
@@ -203,7 +259,7 @@ Rectangle {
         text: "\ued15"
         state: "volume"
 
-        background: Rectangle{
+        background: Rectangle {
             anchors.fill: parent
             color: root.color
         }
@@ -244,11 +300,11 @@ Rectangle {
         onClicked: {
             if (volumeLabel.state === "volume") {
                 volumeLabel.state = "mutex"
-                volumeLabel.currentVolume=volumeSlider.value
-                volumeSlider.value=0
+                volumeLabel.currentVolume = volumeSlider.value
+                volumeSlider.value = 0
             } else {
                 volumeLabel.state = "volume"
-                volumeSlider.value=volumeLabel.currentVolume
+                volumeSlider.value = volumeLabel.currentVolume
             }
         }
     }
@@ -282,7 +338,7 @@ Rectangle {
         text: "\uf904"
         state: "order"
 
-        background: Rectangle{
+        background: Rectangle {
             anchors.fill: parent
             color: root.color
         }
@@ -368,7 +424,7 @@ Rectangle {
         ToolTip.delay: 500
         ToolTip.text: "打开播放列表"
 
-        background: Rectangle{
+        background: Rectangle {
             anchors.fill: parent
             color: root.color
         }
