@@ -1,4 +1,4 @@
-/*
+﻿/*
   歌单详情窗口
   */
 import QtQuick 2.9
@@ -49,6 +49,7 @@ Popup {
             top: parent.top
         }
         text: "\uf750"
+        color: "white"
         font.family: icomoonFont.name
         font.pixelSize: 28
         verticalAlignment: Label.AlignVCenter

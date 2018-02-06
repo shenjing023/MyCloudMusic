@@ -20,7 +20,7 @@ Item {
         target: root.parent
         onRequestFinished: {
             var data = JSON.parse(result)
-            type=data['type']
+            type = data['type']
             pic_url = data['pic']
             name = data['name']
             user = data['user']
@@ -37,8 +37,8 @@ Item {
                                       _singers: songs[i].singers,
                                       _song_id: songs[i].song_id,
                                       _song_name: songs[i].song_name,
-                                      _pic_url:songs[i].pic_url,
-                                      _song_length:songs[i].song_length
+                                      _pic_url: songs[i].pic_url,
+                                      _song_length: songs[i].song_length
                                   })
             }
         }
@@ -132,7 +132,7 @@ Item {
         }
     }
 
-    Rectangle{
+    Rectangle {
         anchors.top: parent.top
         anchors.topMargin: 210
         width: parent.width
@@ -175,7 +175,7 @@ Item {
         }
 
         Label {
-            width: (parent .width)*2/5
+            width: (parent.width) * 2 / 5
             height: parent.height
             padding: 5
             text: qsTr("音乐标题")
@@ -207,7 +207,7 @@ Item {
         }
 
         Label {
-            width: (parent.width)*4 / 15
+            width: (parent.width) * 4 / 15
             height: parent.height
             padding: 5
             text: qsTr("专辑")
@@ -217,15 +217,15 @@ Item {
         }
     }
 
-    Rectangle{
+    Rectangle {
         anchors.top: listHeader.bottom
         width: parent.width
         height: 1
         color: "#23262c"
     }
 
-    ButtonGroup{
-        id:songsBtnGroup
+    ButtonGroup {
+        id: songsBtnGroup
     }
 
     ListView {
@@ -236,7 +236,7 @@ Item {
         width: parent.width
         model: songsModel
         delegate: SongListItem {
-            id:songlistItem
+            id: songlistItem
             song_index: index + 1
             song_name: _song_name
             singers: _singers
@@ -247,7 +247,9 @@ Item {
             ButtonGroup.group: songsBtnGroup
 
             onDoubleClicked: {
-                playMusic("source="+root.type+"&id="+song_id,songlistItem.pic_url,songlistItem.song_length)
+                playMusic("source=" + root.type + "&id=" + song_id,
+                          songlistItem.pic_url, songlistItem.song_length,
+                          songlistItem.song_name, songlistItem.singers)
             }
         }
 

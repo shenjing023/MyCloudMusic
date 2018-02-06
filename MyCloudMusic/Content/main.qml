@@ -34,7 +34,7 @@ Rectangle {
             top: parent.top
             topMargin: 2
             left: navigationBar.right
-            leftMargin: 2
+            //leftMargin: 2
             right: parent.right
         }
         height: parent.height - 2-playController.height
@@ -60,9 +60,11 @@ Rectangle {
       pic_url  歌曲专辑图片
       song_length 歌曲的长度
       */
-    function playMusic(url,pic_url,song_length){
-        playController.song_url=url
+    function playMusic(url,pic_url,song_length,song_name,singer){
         playController.pic_url=pic_url
         playController.song_length=song_length
+        playController.song_name=song_name
+        playController.singer=singer
+        playController.song_url=url //song_url要在最后，因为PlayController的onSong_urlChanged
     }
 }

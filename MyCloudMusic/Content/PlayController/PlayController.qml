@@ -10,6 +10,8 @@ Rectangle {
     property string song_url: "" //歌曲的url
     property string pic_url: "" //歌曲专辑图片
     property int song_length: 0 //歌曲的长度
+    property string song_name: ""
+    property string singer: ""
     id: root
     color: "#222225"
 
@@ -36,15 +38,16 @@ Rectangle {
 
     MediaPlayer {
         id: mediaplayer
+        volume: volumeSlider.volume
 
         onError: {
 
         }
         onPlaying: {
-
+            playBtn.state = "play"
         }
         onStopped: {
-
+            playBtn.state = "pause"
         }
         onSourceChanged: {
 
@@ -52,13 +55,12 @@ Rectangle {
         onPositionChanged: {
             if (!playSlider.isPressed)
                 playSlider.value = position / 1000
-            console.log(position / 1000)
         }
     }
 
     onSong_urlChanged: {
         network.get("/music/url?" + song_url)
-        //playSlider.maxValue = song_length
+        infoLoader.item.updateInfo(pic_url, song_name, singer)
     }
 
     Row {
@@ -94,6 +96,7 @@ Rectangle {
 
             ToolTip.visible: previousBtn.hovered
             ToolTip.delay: 500
+
             ToolTip.text: "上一首"
 
             onClicked: {
@@ -153,8 +156,10 @@ Rectangle {
             onClicked: {
                 if (playBtn.state === "play") {
                     playBtn.state = "pause"
+                    mediaplayer.pause()
                 } else {
                     playBtn.state = "play"
+                    mediaplayer.play()
                 }
             }
         }
@@ -228,6 +233,10 @@ Rectangle {
 
         onValueChanged: {
             playedTime.text = durationFormat(playSlider.value)
+        }
+
+        onMoved: {
+            mediaplayer.seek(playSlider.value * 1000)
         }
     }
 
@@ -322,8 +331,14 @@ Rectangle {
         isVisible: false
         value: 50
 
-        onValueChanged: {
+        property real volume: QtMultimedia.convertVolume(
+                                  volumeSlider.value / 100,
+                                  QtMultimedia.LogarithmicVolumeScale,
+                                  QtMultimedia.LinearVolumeScale)
 
+        onValueChanged: {
+            if (value == 0)
+                volumeLabel.state = "mutex"
         }
     }
 
@@ -442,5 +457,17 @@ Rectangle {
         onClicked: {
 
         }
+    }
+
+    //显示歌名、歌手等信息的窗口
+    Loader {
+        id: infoLoader
+        anchors.left: parent.left
+        anchors.bottom: parent.top
+        width: 200
+        height: 65
+        visible: mediaplayer.status === MediaPlayer.NoMedia
+                 || mediaplayer.status === MediaPlayer.UnknownStatus ? false : true
+        source: "qrc:/Content/PlayController/MinWindow.qml"
     }
 }

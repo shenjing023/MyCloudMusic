@@ -9,7 +9,7 @@ Slider {
     property real maxValue: 0.0
     property bool isVisible: true //滑块handle是否显示，在音量调节器时需要隐藏
     property bool isPressed: false
-    property var releasedFunc: function(){}
+    property var releasedFunc: function () {}
     id: sliderControl
     from: minValue
     to: maxValue
@@ -21,14 +21,14 @@ Slider {
         implicitHeight: 5
         width: sliderControl.availableWidth
         height: implicitHeight
-        radius: 3
+        radius: 2
         color: "#171719"
 
         Rectangle {
             width: sliderControl.visualPosition * parent.width
             height: parent.height
             color: "#b82525"
-            radius: 3
+            radius: 2
         }
     }
 
@@ -36,16 +36,15 @@ Slider {
         x: sliderControl.leftPadding + sliderControl.visualPosition
            * (sliderControl.availableWidth - width)
         y: sliderControl.topPadding + sliderControl.availableHeight / 2 - height / 2
-        width: 15
-        height: 15
-        radius: 15
+        width: 13
+        height: 13
+        radius: 7
         color: "#f6f6f6"
         visible: {
-            if(isVisible){
+            if (isVisible) {
                 return true
-            }
-            else{
-                if(sliderControl.hovered)
+            } else {
+                if (sliderControl.hovered)
                     return true
                 else
                     return false
@@ -60,32 +59,32 @@ Slider {
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
             font.family: icomoonFont.name
-            font.pixelSize: 20
+            font.pixelSize: 18
         }
 
         MouseArea {
-            property real xmouse;
-                        anchors.fill: parent;
-                        hoverEnabled: true;
+            property real xmouse
+            anchors.fill: parent
+            hoverEnabled: true
 
-                        cursorShape: Qt.PointingHandCursor;
-                        acceptedButtons: Qt.LeftButton;
-                        onPressed: {
-                            xmouse=mouseX;
-                            sliderControl.isPressed=true;
-                        }
+            cursorShape: Qt.PointingHandCursor
+            acceptedButtons: Qt.LeftButton
+            onPressed: {
+                xmouse = mouseX
+                sliderControl.isPressed = true
+            }
 
-                        onReleased: {
-                            sliderControl.isPressed=false;
-                            sliderControl.releasedFunc();
-                        }
+            onReleased: {
+                sliderControl.isPressed = false
+                sliderControl.releasedFunc()
+            }
 
-                        onPositionChanged: {
-                            if(pressed)
-                            {
-                                sliderControl.value=sliderControl.value+(mouseX-xmouse)/(sliderControl.width)*(maxValue-minValue);
-                            }
-                        }
+            onPositionChanged: {
+                if (pressed) {
+                    sliderControl.value = sliderControl.value + (mouseX - xmouse)
+                            / (sliderControl.width) * (maxValue - minValue)
+                }
+            }
         }
     }
 }
