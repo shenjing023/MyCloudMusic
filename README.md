@@ -5,6 +5,9 @@
 ![](http://ord6anrvd.bkt.clouddn.com/201802082322_15.png)
 ![](http://ord6anrvd.bkt.clouddn.com/201802082323_425.png)
 ![](http://ord6anrvd.bkt.clouddn.com/201802082324_445.png)
+# Dependencies
+- Qt>=5.9.1
+- QtCreator + VS2015
 # 致谢
 在开发过程中，参考了很多音乐网站API的分析代码和文章，感谢这些开发者的努力。（具体项目网址参考源码）
 # 后续
