@@ -16,7 +16,7 @@ Network::Network(QObject *parent) : QObject(parent)
 void Network::get(const QString &url)
 {
     QNetworkRequest request;
-    request.setUrl(QUrl("http://192.168.217.147:5000"+url));
+    request.setUrl(QUrl("http://127.0.0.1:5000"+url));
     m_pManager->get(request);
 }
 
