@@ -46,11 +46,8 @@ Rectangle {
         id: playController
         anchors {
             bottom: parent.bottom
-            bottomMargin: 1
             left: parent.left
-            leftMargin: 1
             right: parent.right
-            rightMargin: 1
         }
         height: 45
     }
