@@ -30,6 +30,7 @@ Rectangle {
         id: network
         onSign_requestFinished: {
             var data = JSON.parse(bytes)
+            console.log(data['song_url'])
             var url = data['song_url']
             mediaplayer.source = url
             mediaplayer.play()
@@ -77,7 +78,7 @@ Rectangle {
             width: 30
             height: 30
             anchors.verticalCenter: parent.verticalCenter
-            text: "\ued06"
+            text: "\uf048"
 
             background: Rectangle {
                 anchors.fill: parent
@@ -88,8 +89,8 @@ Rectangle {
                 anchors.fill: parent
                 text: previousBtn.text
                 color: previousBtn.hovered ? "white" : "#5a5a5c"
-                font.pixelSize: 30
-                font.family: icomoonFont.name
+                font.pixelSize: 24
+                font.family: awesomeFont_solid.name
                 verticalAlignment: Label.AlignVCenter
                 horizontalAlignment: Label.AlignHCenter
             }
@@ -107,10 +108,10 @@ Rectangle {
         //播放或暂停
         Button {
             id: playBtn
-            width: 35
-            height: 35
+            width: 30
+            height: 30
             anchors.verticalCenter: parent.verticalCenter
-            text: "\ued03"
+            text: "\uf04b"
             state: "pause"
 
             background: Rectangle {
@@ -124,8 +125,8 @@ Rectangle {
                 //anchors.verticalCenter: parent.verticalCenter
                 text: playBtn.text
                 color: playBtn.hovered ? "white" : "#5a5a5c"
-                font.pixelSize: 35
-                font.family: icomoonFont.name
+                font.pixelSize: 28
+                font.family: awesomeFont_solid.name
                 verticalAlignment: Label.AlignVCenter
                 horizontalAlignment: Label.AlignHCenter
             }
@@ -135,7 +136,7 @@ Rectangle {
                     name: "play"
                     PropertyChanges {
                         target: playBtn
-                        text: "\ued04"
+                        text: "\uf04c"
                         ToolTip.text: "暂停"
                     }
                 },
@@ -143,7 +144,7 @@ Rectangle {
                     name: "pause"
                     PropertyChanges {
                         target: playBtn
-                        text: "\ued03"
+                        text: "\uf04b"
                         ToolTip.text: "播放"
                     }
                 }
@@ -170,7 +171,7 @@ Rectangle {
             width: 30
             height: 30
             anchors.verticalCenter: parent.verticalCenter
-            text: "\ued07"
+            text: "\uf051"
 
             background: Rectangle {
                 anchors.fill: parent
@@ -181,8 +182,8 @@ Rectangle {
                 anchors.fill: parent
                 text: nextBtn.text
                 color: nextBtn.hovered ? "white" : "#5a5a5c"
-                font.pixelSize: 30
-                font.family: icomoonFont.name
+                font.pixelSize: 24
+                font.family: awesomeFont_solid.name
                 verticalAlignment: Label.AlignVCenter
                 horizontalAlignment: Label.AlignHCenter
             }
@@ -265,7 +266,7 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         width: 30
         height: 30
-        text: "\ued15"
+        text: "\uf027"
         state: "volume"
 
         background: Rectangle {
@@ -278,7 +279,7 @@ Rectangle {
             text: volumeLabel.text
             color: volumeLabel.hovered ? "white" : "#5a5a5c"
             font.pixelSize: 30
-            font.family: icomoonFont.name
+            font.family: awesomeFont_solid.name
             verticalAlignment: Label.AlignVCenter
             horizontalAlignment: Label.AlignHCenter
         }
@@ -292,7 +293,7 @@ Rectangle {
                 name: "volume"
                 PropertyChanges {
                     target: volumeLabel
-                    text: "\ued15"
+                    text: "\uf027"
                     ToolTip.text: "静音"
                 }
             },
@@ -300,7 +301,7 @@ Rectangle {
                 name: "mutex"
                 PropertyChanges {
                     target: volumeLabel
-                    text: "\ued17"
+                    text: "\uf026"
                     ToolTip.text: "恢复音量"
                 }
             }
@@ -350,7 +351,7 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         width: 40
         height: 30
-        text: "\uf904"
+        text: "\uf0cb"
         state: "order"
 
         background: Rectangle {
@@ -362,8 +363,8 @@ Rectangle {
             anchors.fill: parent
             text: playOrder.text
             color: playOrder.hovered ? "white" : "#5a5a5c"
-            font.pixelSize: 30
-            font.family: icomoonFont.name
+            font.pixelSize: 24
+            font.family: awesomeFont_solid.name
             verticalAlignment: Label.AlignVCenter
             horizontalAlignment: Label.AlignHCenter
         }
@@ -377,7 +378,7 @@ Rectangle {
                 name: "order"
                 PropertyChanges {
                     target: playOrder
-                    text: "\uf904"
+                    text: "\uf0cb"
                     ToolTip.text: "顺序播放"
                 }
             },
@@ -385,7 +386,7 @@ Rectangle {
                 name: "list"
                 PropertyChanges {
                     target: playOrder
-                    text: "\uf922"
+                    text: "\uf0ca"
                     ToolTip.text: "列表循环"
                 }
             },
@@ -393,7 +394,7 @@ Rectangle {
                 name: "single"
                 PropertyChanges {
                     target: playOrder
-                    text: "\uf923"
+                    text: "\uf365"
                     ToolTip.text: "单曲循环"
                 }
             },
@@ -401,7 +402,7 @@ Rectangle {
                 name: "random"
                 PropertyChanges {
                     target: playOrder
-                    text: "\uf962"
+                    text: "\uf074"
                     ToolTip.text: "随机播放"
                 }
             }
@@ -433,7 +434,7 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         width: 30
         height: 30
-        text: "\ueb9f"
+        text: "\uf1ea"
 
         ToolTip.visible: playlist.hovered
         ToolTip.delay: 500
@@ -448,8 +449,8 @@ Rectangle {
             anchors.fill: parent
             text: playlist.text
             color: playlist.hovered ? "white" : "#5a5a5c"
-            font.pixelSize: 30
-            font.family: icomoonFont.name
+            font.pixelSize: 24
+            font.family: awesomeFont_solid.name
             verticalAlignment: Label.AlignVCenter
             horizontalAlignment: Label.AlignHCenter
         }

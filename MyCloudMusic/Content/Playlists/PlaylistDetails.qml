@@ -256,6 +256,6 @@ Item {
         clip: true
         ScrollBar.vertical: ScrollBar {
         }
-        boundsBehavior: Flickable.StopAtBounds
+        //boundsBehavior: Flickable.StopAtBounds
     }
 }

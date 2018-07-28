@@ -37,13 +37,14 @@ Rectangle{
         }
 
         NavigationBtn{
-            iconText: "\uef51";
+            iconText: "\uf001";
             btnText: qsTr("精选歌单");
             width: parent.width;
             height: 30;
             ButtonGroup.group: navigationBtnGroup;
             btnClickedFunc: function(){
                 console.log(btnText);
+                setContentView("qrc:/Content/Playlists/Playlists.qml")
             }
             Component.onCompleted: {
                 checked=true
@@ -51,18 +52,19 @@ Rectangle{
         }
 
         NavigationBtn{
-            iconText: "\uec0b";
+            iconText: "\uf025";
             btnText: qsTr("私人FM");
             width: parent.width;
             height: 30;
             ButtonGroup.group: navigationBtnGroup;
             btnClickedFunc: function(){
                 console.log(btnText);
+                setContentView("qrc:/Content/PersonFM/PersonFM.qml")
             }
         }
 
         NavigationBtn{
-            iconText: "\ufb87";
+            iconText: "\uf002";
             btnText: qsTr("快速搜索");
             width: parent.width;
             height: 30;
@@ -87,7 +89,7 @@ Rectangle{
         }
 
         NavigationBtn{
-            iconText: "\uf867";
+            iconText: "\uf015";
             btnText: qsTr("本地音乐");
             width: parent.width;
             height: 30;
@@ -98,7 +100,7 @@ Rectangle{
         }
 
         NavigationBtn{
-            iconText: "\uef26";
+            iconText: "\uf019";
             btnText: qsTr("下载管理");
             width: parent.width;
             height: 30;

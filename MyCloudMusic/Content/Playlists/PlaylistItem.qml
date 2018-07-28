@@ -1,4 +1,4 @@
-import QtQuick 2.9
+﻿import QtQuick 2.9
 import QtQuick.Controls 2.2
 
 Rectangle {
@@ -37,14 +37,14 @@ Rectangle {
         //图像底部play按钮
         Label {
             id: playBtn
-            width: 30
-            height: 30
+            width: 40
+            height: 40
             anchors.bottom: parent.bottom
             anchors.right: parent.right
-            text: "\ued03"
+            text: "\uf144"
             color: "#e6e9ec"
-            font.family: icomoonFont.name
-            font.pixelSize: 24
+            font.family: awesomeFont_regular.name
+            font.pixelSize: 30
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
             visible: false
@@ -71,7 +71,7 @@ Rectangle {
         width: parent.width
         height: 40
         text: title
-        color: "#dcdde4"
+        color: "#000000"
         font.family: "Microsoft YaHei"
         font.pixelSize: 14
         wrapMode: Text.Wrap

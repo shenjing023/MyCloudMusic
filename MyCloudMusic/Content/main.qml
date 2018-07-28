@@ -9,8 +9,23 @@ Rectangle {
     color: "transparent"
 
     FontLoader {
-        id: icomoonFont
-        source: "qrc:/Font/icomoon.ttf"
+        id: awesomeFont
+        source: "qrc:/Font/fontawesome-webfont.ttf"
+    }
+
+    FontLoader {
+        id: awesomeFont_regular
+        source: "qrc:/Font/FontAwesome5-Regular.otf"
+    }
+
+    FontLoader {
+        id: awesomeFont_solid
+        source: "qrc:/Font/FontAwesome5-Solid.otf"
+    }
+
+    FontLoader {
+        id: awesomeFont_light
+        source: "qrc:/Font/FontAwesome5-Light.otf"
     }
 
     Rectangle {
@@ -53,6 +68,7 @@ Rectangle {
     }
 
     /*
+      播放歌曲
       url  获取歌曲的链接url
       pic_url  歌曲专辑图片
       song_length 歌曲的长度
@@ -64,4 +80,12 @@ Rectangle {
         playController.singer=singer
         playController.song_url=url //song_url要在最后，因为PlayController的onSong_urlChanged
     }
+
+    /*
+      切换右边内容界面
+      */
+    function setContentView(view){
+        contentWindow.source=view
+    }
+
 }

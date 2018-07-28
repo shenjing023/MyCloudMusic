@@ -36,8 +36,8 @@ Slider {
         x: sliderControl.leftPadding + sliderControl.visualPosition
            * (sliderControl.availableWidth - width)
         y: sliderControl.topPadding + sliderControl.availableHeight / 2 - height / 2
-        width: 13
-        height: 13
+        width: 14
+        height: 14
         radius: 7
         color: "#f6f6f6"
         visible: {
@@ -51,15 +51,12 @@ Slider {
             }
         }
 
-        Label {
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: "\uf6ca"
+        Rectangle{
+            anchors.centerIn: parent
+            width: 4
+            height: 4
+            radius: 2
             color: "#b82525"
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
-            font.family: icomoonFont.name
-            font.pixelSize: 18
         }
 
         MouseArea {

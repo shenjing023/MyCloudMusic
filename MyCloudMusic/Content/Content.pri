@@ -13,4 +13,5 @@ DISTFILES += \
     $$PWD/Playlists/SongListItem.qml \
     $$PWD/PlayController/PlayController.qml \
     $$PWD/PlayController/PlaySlider.qml \
-    $$PWD/PlayController/MinWindow.qml
+    $$PWD/PlayController/MinWindow.qml \
+    $$PWD/PersonFM/PersonFM.qml

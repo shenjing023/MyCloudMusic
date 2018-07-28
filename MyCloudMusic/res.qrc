@@ -5,7 +5,6 @@
         <file>Images/close.png</file>
         <file>Content/main.qml</file>
         <file>Images/search.png</file>
-        <file>Font/icomoon.ttf</file>
         <file>Content/NavigationBar/NavigationBar.qml</file>
         <file>Content/NavigationBar/NavigationBtn.qml</file>
         <file>Content/Playlists/Playlists.qml</file>
@@ -20,5 +19,10 @@
         <file>Content/PlayController/PlayController.qml</file>
         <file>Content/PlayController/PlaySlider.qml</file>
         <file>Content/PlayController/MinWindow.qml</file>
+        <file>Font/fontawesome-webfont.ttf</file>
+        <file>Font/FontAwesome5-Light.otf</file>
+        <file>Font/FontAwesome5-Regular.otf</file>
+        <file>Font/FontAwesome5-Solid.otf</file>
+        <file>Content/PersonFM/PersonFM.qml</file>
     </qresource>
 </RCC>

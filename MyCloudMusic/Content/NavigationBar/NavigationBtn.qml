@@ -37,7 +37,7 @@ Button{
             width: 25;
             height: parent.height;
             text:iconText;
-            font.family: icomoonFont.name;
+            font.family: awesomeFont_solid.name;
             font.pixelSize: 16;
             verticalAlignment:Label.AlignVCenter;
             horizontalAlignment: Label.AlignHCenter;

@@ -48,9 +48,11 @@ Popup {
             right: parent.right
             top: parent.top
         }
-        text: "\uf750"
+        width: 40
+        height: 40
+        text: "\uf00d"
         color: "white"
-        font.family: icomoonFont.name
+        font.family: awesomeFont_regular.name
         font.pixelSize: 28
         verticalAlignment: Label.AlignVCenter
         horizontalAlignment: Label.AlignHCenter

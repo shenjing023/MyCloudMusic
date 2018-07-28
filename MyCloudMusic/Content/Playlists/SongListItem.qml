@@ -55,8 +55,8 @@ Button {
                     width: parent.width / 2
                     height: parent.height
                     color: "#333538"
-                    text: "\ufab4"
-                    font.family: icomoonFont.name
+                    text: "\uf004"
+                    font.family: awesomeFont_regular.name
                     font.pixelSize: 16
                     verticalAlignment: Label.AlignVCenter
                     horizontalAlignment: Label.AlignHCenter
@@ -68,8 +68,8 @@ Button {
                     width: parent.width / 2-5
                     height: parent.height
                     color: "#333538"
-                    text: "\uef26"
-                    font.family: icomoonFont.name
+                    text: "\uf33d"
+                    font.family: awesomeFont_solid.name
                     font.pixelSize: 16
                     verticalAlignment: Label.AlignVCenter
                     horizontalAlignment: Label.AlignHCenter
