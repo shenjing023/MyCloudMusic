@@ -15,6 +15,9 @@ Rectangle {
     id: root
     color: "#222225"
 
+    //播放进度条改变信号
+    signal playSlider1Chang(int value)
+
     //格式化歌曲长度
     function durationFormat(length) {
         var m = parseInt(length / 60) >= 10 ? parseInt(
@@ -30,7 +33,6 @@ Rectangle {
         id: network
         onSign_requestFinished: {
             var data = JSON.parse(bytes)
-            console.log(data['song_url'])
             var url = data['song_url']
             mediaplayer.source = url
             mediaplayer.play()
@@ -234,6 +236,7 @@ Rectangle {
 
         onValueChanged: {
             playedTime.text = durationFormat(playSlider.value)
+            playSlider1Chang(playSlider.value)
         }
 
         onMoved: {
