@@ -1,5 +1,5 @@
 # MyCloudMusic
-网易云音乐与虾米音乐的部分功能混合,[MyCloudMusic](https://github.com/shenjing023/MyCloudMusic_Server)的简易客户端
+网易云音乐与虾米音乐的部分功能混合,[MyCloudMusic](https://github.com/shenjing023/MyCloudMusic_Server_Go)的简易客户端
 
 ![](http://ord6anrvd.bkt.clouddn.com/201802082320_977.png)
 ![](http://ord6anrvd.bkt.clouddn.com/201802082322_15.png)
