@@ -16,7 +16,12 @@ Rectangle {
     color: "#222225"
 
     //播放进度条改变信号
-    signal playSlider1Chang(int value)
+    signal playSliderChanged(int value)
+    //当前歌曲已播放完毕
+    signal playFinished()
+    //下一首
+    signal nextSong()
+
 
     //格式化歌曲长度
     function durationFormat(length) {
@@ -195,7 +200,7 @@ Rectangle {
             ToolTip.text: "下一首"
 
             onClicked: {
-
+                nextSong()
             }
         }
     }
@@ -236,7 +241,9 @@ Rectangle {
 
         onValueChanged: {
             playedTime.text = durationFormat(playSlider.value)
-            playSlider1Chang(playSlider.value)
+            playSliderChanged(playSlider.value)
+            if(playSlider.value===maxValue)
+                playFinished()
         }
 
         onMoved: {

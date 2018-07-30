@@ -10,7 +10,6 @@ Rectangle {
     property string lyric: ""           //歌词
     property string songId: ""      //歌曲id
     property int songLength: 0  //歌曲长度
-
     property var lyricTimes:[]   //存储每一句歌词对应的时间
 
 
@@ -21,39 +20,45 @@ Rectangle {
       根据播放进度的时间，找出对应的lyricTimes的下标,来控制歌词列表滚动
       */
     function findInsertIndex(num){
-       var arr=lyricTimes
-      var left=0
-      var right=arr.length-1
-      if (num<=arr[0]){
-        return 0
-      }
-      else if(num>=arr[right]){
-        return right
-      }
+        var arr=lyricTimes
+        var left=0
+        var right=arr.length-1
+        if (num<=arr[0]){
+            return 0
+        }
+        else if(num>=arr[right]){
+            return right
+        }
 
-      while(left<=right){
-        var mid=left+parseInt((right-left)/2)
-        if(arr[mid]>num){
-          right=mid-1
+        while(left<=right){
+            var mid=left+parseInt((right-left)/2)
+            if(arr[mid]>num){
+                right=mid-1
+            }
+            else if(arr[mid]<num){
+                left=mid+1
+            }
+            else{
+                return mid
+            }
         }
-        else if(arr[mid]<num){
-          left=mid+1
-        }
-        else{
-          return mid
-        }
-      }
 
-      return left-1
+        return left-1
     }
 
     Connections{
         target: playController
-        onPlaySlider1Chang:{
+        onPlaySliderChanged:{
             if (lyricTimes.length>0){
                 lyricView.currentIndex=findInsertIndex(value)
                 lyricView.positionViewAtIndex(findInsertIndex(value),ListView.Center)
             }
+        }
+        onPlayFinished:{
+            network.get("/personfm?source=netease")
+        }
+        onNextSong:{
+            network.get("/personfm?source=netease")
         }
     }
 
@@ -89,6 +94,10 @@ Rectangle {
                                       })
                 }
             }
+
+            playMusic("source=netease" + "&id=" + songId,
+                      albumUrl, songLength,
+                      songName, singer)
 
         }
         onSign_requestError: {
@@ -127,75 +136,6 @@ Rectangle {
                 width: parent.width
                 height: parent.height-70
                 source: albumUrl
-            }
-
-            //播放或暂停
-            Button {
-                id: playBtn
-                anchors.bottom: leftImage.bottom
-                anchors.bottomMargin: 5
-//                anchors{
-//                    bottom: parent.bottom
-//                    bottomMargin: 5
-//                }
-                width: 30
-                height: 30
-                //anchors.verticalCenter: parent.verticalCenter
-                text: "\uf04b"
-                state: "pause"
-
-                background: Rectangle {
-                    anchors.fill: parent
-                    //color: root.color
-                }
-
-                contentItem: Label {
-                    anchors.fill: parent
-
-                    //anchors.verticalCenter: parent.verticalCenter
-                    text: playBtn.text
-                    color: playBtn.hovered ? "white" : "#5a5a5c"
-                    font.pixelSize: 28
-                    font.family: awesomeFont_solid.name
-                    verticalAlignment: Label.AlignVCenter
-                    horizontalAlignment: Label.AlignHCenter
-                }
-
-                states: [
-                    State {
-                        name: "play"
-                        PropertyChanges {
-                            target: playBtn
-                            text: "\uf04c"
-                            ToolTip.text: "暂停"
-                        }
-                    },
-                    State {
-                        name: "pause"
-                        PropertyChanges {
-                            target: playBtn
-                            text: "\uf04b"
-                            ToolTip.text: "播放"
-                        }
-                    }
-                ]
-
-                ToolTip.visible: playBtn.hovered
-                ToolTip.delay: 500
-                ToolTip.text: "播放"
-
-                onClicked: {
-                    if (playBtn.state === "play") {
-                        playBtn.state = "pause"
-                        //mediaplayer.pause()
-                    } else {
-                        playBtn.state = "play"
-                        //mediaplayer.play()
-                        playMusic("source=netease" + "&id=" + songId,
-                                  albumUrl, songLength,
-                                  songName, singer)
-                    }
-                }
             }
         }
 
@@ -251,18 +191,13 @@ Rectangle {
                 delegate: Label{
                     text: _lyric
                     font.family: "Microsoft YaHei"
-                    font.pixelSize: 16
+                    font.pixelSize: ListView.isCurrentItem?20:16
                     wrapMode: Text.Wrap
                     width: parent.width
                     color: ListView.isCurrentItem?"red":"black"
                 }
                 //clip:true
-                move: Transition {
-                    NumberAnimation { properties: "y"; duration: 2000 }
-                }
-
                 spacing: 10
-
                 ScrollBar.vertical: ScrollBar{
 
                 }
