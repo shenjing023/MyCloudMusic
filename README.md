@@ -5,6 +5,7 @@
 ![](http://ord6anrvd.bkt.clouddn.com/201802082322_15.png)
 ![](http://ord6anrvd.bkt.clouddn.com/201802082323_425.png)
 ![](http://ord6anrvd.bkt.clouddn.com/201802082324_445.png)
+![](http://ord6anrvd.bkt.clouddn.com/201807302337_214.PNG)
 # Dependencies
 - Qt>=5.9.1
 - QtCreator + VS2015
